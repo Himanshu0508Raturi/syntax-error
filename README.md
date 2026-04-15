@@ -8,7 +8,6 @@ The workflow includes data preprocessing, handling class imbalance, model traini
 ---
 
 ## Dataset
-- Source: Custom dataset (CDD – Comprehensive Disaster Dataset, augmented)
 - Format: Image dataset organized in class-based folders
 - Task:
   - Primary: Disaster type classification
@@ -16,7 +15,6 @@ The workflow includes data preprocessing, handling class imbalance, model traini
 
 ---
 
-## Project Pipeline
 
 ### 1. Environment Setup
 - Framework: PyTorch
@@ -100,7 +98,6 @@ Multi-task learning allows the model to learn shared representations that improv
 
 ---
 
-## Training Strategy
 
 ### Hyperparameters
 - Epochs: 5
@@ -110,102 +107,7 @@ Multi-task learning allows the model to learn shared representations that improv
   - CrossEntropyLoss (classification)
   - CrossEntropyLoss (severity)
 
-### Training Loop
-- Forward pass:
-  - Input images → model → two outputs
-- Loss computation:
-  - Combined loss from both tasks
-- Backpropagation:
-  - Gradients computed and weights updated
 
----
 
-## Evaluation
 
-- Model switched to evaluation mode
-- Predictions collected on validation set
-- Metrics:
-  - Predicted class vs actual labels
 
----
-
-## Model Interpretability (Grad-CAM)
-
-Grad-CAM is used to visualize which parts of the image influenced the model’s decision.
-
-### Steps:
-1. Forward pass to get predictions
-2. Compute gradients of target class
-3. Generate heatmap
-4. Overlay heatmap on original image
-
-This helps in:
-- Debugging model behavior
-- Ensuring model focuses on relevant regions
-
----
-
-## Model Saving
-
-Multiple approaches attempted:
-- `torch.save(model, 'model.pkl')` (recommended)
-- `state_dict` saving (preferred for production)
-
----
-
-## Key Observations
-
-- Data augmentation improves generalization
-- Class imbalance handling is critical for fair learning
-- Transfer learning significantly reduces training time
-- Multi-task learning enhances feature extraction
-- Grad-CAM provides useful interpretability insights
-
----
-
-## Limitations
-
-- Severity labels are artificially generated (not real annotations)
-- Limited number of epochs (underfitting possible)
-- No extensive hyperparameter tuning
-- Evaluation metrics could be expanded (precision, recall, F1)
-
----
-
-## Future Improvements
-
-- Use real severity annotations
-- Increase training epochs
-- Add advanced augmentation techniques
-- Implement early stopping and learning rate scheduling
-- Use more robust evaluation metrics
-- Deploy model via API (FastAPI / Flask)
-
----
-
-## How to Run
-
-1. Install dependencies:
-   ```
-   pip install torch torchvision numpy pandas matplotlib seaborn opencv-python
-   ```
-
-2. Set dataset path:
-   ```
-   DATASET_PATH = "your_dataset_directory"
-   ```
-
-3. Run training script or notebook
-
----
-
-## Conclusion
-
-This project demonstrates a complete deep learning workflow:
-- Data preprocessing
-- Handling imbalance
-- Transfer learning with ResNet50
-- Multi-task learning
-- Model interpretability
-
-It provides a strong foundation for real-world disaster analysis systems and can be extended into deployment-ready solutions.
