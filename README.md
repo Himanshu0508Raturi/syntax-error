@@ -107,7 +107,52 @@ Multi-task learning allows the model to learn shared representations that improv
   - CrossEntropyLoss (classification)
   - CrossEntropyLoss (severity)
 
+## What this project does
+This project provides a small web app and an API that analyze an uploaded image and predict the type of disaster in the scene. It also estimates how severe the damage looks inside the predicted class using a Grad-CAM based score and simple visual heuristics.
 
+## Main features
+- Image classification into six classes: Damaged_Infrastructure, Fire_Disaster, Human_Damage, Land_Disaster, Non_Damage, Water_Disaster
+- Intra-class severity tiering: Contained, Moderate, Severe, Catastrophic
+- FastAPI backend with a single /predict endpoint for image inference
+- Simple web interface for drag-and-drop image upload
 
+## Tech stack
+- Python, FastAPI, Uvicorn
+- PyTorch, Torchvision
+- OpenCV, Pillow
+- HTML, CSS, JavaScript
 
+## Repository contents
+- app.py: FastAPI server, model loading, inference, and severity scoring
+- best_model.pth: Trained model weights
+- index1.html, script1.js, style2.css: Front-end UI
+- requirements.txt: Python dependencies
+- syntaxError_Phase1.ipynb: Training and experimentation notebook
+- syntax_error_ppt.pdf: Project presentation
 
+## Setup
+1. Create and activate a virtual environment.
+2. Install dependencies:
+   pip install -r requirements.txt
+
+## Use the web interface
+1. Open index1.html in your browser.
+2. Upload an image.
+3. Click Analyze Image.
+
+Note: The front-end currently calls the API at http://127.0.0.1:8000/predict. Update script1.js if your API runs on a different host or port.
+
+## API endpoint
+POST /predict
+- Request: multipart/form-data with a single file field named file
+- Response: predicted_class, confidence, intra_class_severity, intra_severity_score, intra_severity_rationale, all_scores
+
+## Model and severity logic
+The model is a ResNet-50 classifier. Intra-class severity is computed using a weighted mix of:
+- Grad-CAM activation spread
+- Class-specific visual proxy scores (fire, water, land, infrastructure, human)
+- Confidence margin between the top predictions
+
+## Notes
+- This repository contains a large model file (best_model.pth). Make sure you have enough disk space when cloning.
+- Use JPEG or PNG images for inference.
