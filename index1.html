@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AI Disaster Detection</title>
+    <link rel="stylesheet" href="style2.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>AI Disaster Detection</h1>
+      <p class="subtitle">
+        Upload an image and let AI analyze disasters in seconds
+      </p>
+
+      <div class="card">
+        <div id="drop-area">
+          <p>Drag & Drop Image</p>
+          <span>or</span>
+          <input type="file" id="imageInput" accept="image/*" />
+        </div>
+
+        <img id="preview" hidden />
+
+        <button onclick="uploadImage()">Analyze Image</button>
+
+        <div id="loader" class="loader hidden"></div>
+
+        <div id="result" class="result-panel hidden"></div>
+
+        <div class="progress-container hidden" id="progressBox">
+          <div id="progressBar"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script1.js"></script>
+  </body>
+</html>
