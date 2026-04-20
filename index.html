@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Disaster Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="scene-bg" aria-hidden="true"></div>
+    <main class="page">
+      <section class="hero">
+        <p class="kicker">Neural Nexus Vision Lab</p>
+        <h1>Disaster Image Intelligence</h1>
+        <p class="subtitle">
+          Upload one photo and get a clean, explainable severity readout in a
+          few seconds.
+        </p>
+      </section>
+
+      <section class="panel-grid">
+        <article class="card upload-card">
+          <div id="drop-area" class="drop-area" role="button" tabindex="0">
+            <p class="drop-title">Drop image here</p>
+            <p class="drop-subtitle">or choose from your device</p>
+            <input type="file" id="imageInput" accept="image/*" />
+          </div>
+
+          <div class="input-actions">
+            <button id="cameraBtn" type="button" class="secondary-btn">
+              Use Camera
+            </button>
+            <button
+              id="closeCameraBtn"
+              type="button"
+              class="secondary-btn hidden"
+            >
+              Close Camera
+            </button>
+          </div>
+
+          <div id="cameraBox" class="camera-box hidden">
+            <video id="cameraFeed" autoplay playsinline muted></video>
+            <div class="camera-actions">
+              <button id="captureBtn" type="button" class="capture-btn">
+                Capture Photo
+              </button>
+            </div>
+          </div>
+
+          <img id="preview" alt="Selected preview" hidden />
+
+          <button id="analyzeBtn" onclick="uploadImage()">Analyze Image</button>
+
+          <div id="loader" class="loader hidden" aria-label="Loading"></div>
+
+          <div id="result" class="result-panel hidden" aria-live="polite"></div>
+
+          <div
+            class="progress-container hidden"
+            id="progressBox"
+            aria-hidden="true"
+          >
+            <div id="progressBar"></div>
+          </div>
+        </article>
+
+        <aside class="card notes-card">
+          <h2>How to read the output</h2>
+          <ul>
+            <li>
+              <strong>Predicted class:</strong> best match among known disaster
+              categories.
+            </li>
+            <li>
+              <strong>Confidence:</strong> certainty level for the top
+              prediction.
+            </li>
+            <li>
+              <strong>Intra-class severity:</strong> intensity estimate within
+              that class.
+            </li>
+            <li>
+              <strong>All scores:</strong> full probability spread across
+              classes.
+            </li>
+          </ul>
+          <p class="notes-footer">
+            Tip: well-lit, centered images usually produce more stable results.
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

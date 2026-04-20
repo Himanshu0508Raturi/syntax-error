@@ -15,7 +15,7 @@ from pydantic import BaseModel
 import uvicorn
 
 
-MODEL_PATH  = "best_model.pth"
+MODEL_PATH  = "resnet50_disaster.pth"
 DEVICE      = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 CLASS_NAMES = [
     "Damaged_Infrastructure", "Fire_Disaster", "Human_Damage",
